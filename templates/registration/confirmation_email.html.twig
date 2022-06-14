@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{{ email.subject }}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        h1 {
+            background-color: #264459;
+            color: #ffffff;
+            padding: 30px 0 50px 0;
+            font-weight: normal;
+        }
+        hr {
+            border: none;
+            border-top: 3px solid #264459;
+            margin: 20px;
+        }
+        .container {
+            background-color: #fefefe;
+            width: 580px;
+            margin: 0 auto;
+        }
+        .bottom {
+            background-color: #efefee;
+        }
+        .block {
+            margin: 0;
+            padding: 10px 20px 20px 20px;
+        }
+        .logo {
+            width: 100%;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #264459;
+            color: #fefefe;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="body">
+    <div class="container">
+        <div class="header text-center">
+            <a href="{{ url('homepage') }}">
+                <img src="{{ absolute_url(asset('build/images/email/logo.png')) }}" class="logo" alt="SpaceBar Logo">
+            </a>
+        </div>
+        <div class="content">
+            <h1 class="text-center">Nice to meet you!</h1>
+            <p class="block">
+                Bienvenue à <strong>Remorka</strong>.
+                Validez votre compte Remorka en seulement quelques clicks.
+            </p>
+            <p class="block text-center">
+                <a href="{{ url('homepage') }}" class="btn">Verifiez votre email</a>
+            </p>
+            <p class="block">
+                Si vous n'avez pas demandé cet email veuillez l'ignorer.
+            </p>
+            {# <p class="block text-center">
+                <a href="{{ url('homepage') }}" class="btn"></a>
+            </p> #}
+            <p class="block">
+               Nous sommes ravis que vous ayez décidé de nous rejoindre, Remorka est un site/application mobile pour demander ou effectuer des depannages.
+            </p>
+        </div>
+        <div class="footer">
+            <p class="block">
+                A bientot,<br><br>
+                L'equipe <em>Remorka</em>
+            </p>
+            
+        </div>
+    </div>
+</div>
+</body>
+</html>

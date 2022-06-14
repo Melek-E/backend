@@ -1,0 +1,156 @@
+$products = $this->getDoctrine()
+            ->getRepository(Depanneur::class)
+            ->findAll();
+ 
+        $data = [];
+ 
+        foreach ($products as $product) {
+           $data[] = [
+               'id' => $product->getId(),
+               'nom' => $product->getNom(),
+               'numero_tel' => $product->getNumeroTel(),
+               'adresse' => $product->getAdress(),
+               'mail' => $product->getMail(),
+               'assurances' => $product->getNomAssurance(),
+           ];
+        }
+ 
+ 
+        return $this->json($data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    /**
+     * @Route("/depanneur/{id}", name="depanneur_edit", methods={"PUT"})
+     */
+    public function edit(Request $request, int $id): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $depanneur = $entityManager->getRepository(Depanneur::class)->find($id);
+ 
+        if (!$depanneur) {
+            return $this->json('No depanneur found for id' . $id, 404);
+        }
+ 
+        $depanneur->setName($request->request->get('name'));
+        $depanneur->setDescription($request->request->get('description'));
+        $entityManager->flush();
+ 
+        $data =  [
+            'id' => $depanneur->getId(),
+            'name' => $depanneur->getName(),
+            'description' => $depanneur->getDescription(),
+        ];
+         
+        return $this->json($data);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    $client = $this->getDoctrine()
+            ->getRepository(Client::class)
+            ->find($id);
+ 
+        if (!$client) {
+ 
+            return $this->json('No client found for id' . $id, 404);
+        }
+
+
+
+
+post client
+
+
+
+
+
+
+
+
+    /**
+     * @Route("/client", name="client_index", methods={"GET"})
+     */
+    public function index(): Response
+    {
+        $products = $this->getDoctrine()
+            ->getRepository(Client::class)
+            ->findAll();
+ 
+        $data = [];
+ 
+        foreach ($products as $product) {
+           $data[] = [
+               'id' => $product->getId(),
+               'nom' => $product->getNom(),
+               'code' => $product->getCode(),
+               'date_creation' => $product->getDateCreation(),
+               'adresse' => $product->getAdresse(),
+               'nombre_voitures' => $product->getNombreVoitures(),
+               'status' => $product->getStatus(),
+               'assurances' => $product->getAssurances(),
+           ];
+        }
+ 
+ 
+        return $this->json($data);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+     Next:
+ 1) Install some missing packages:
+      composer require symfonycasts/verify-email-bundle
+ 2) In RegistrationController::verifyUserEmail():
+    * Customize the last redirectToRoute() after a successful email verification.
+    * Make sure you're rendering success flash messages or change the $this->addFlash() line.
+ 3) Review and customize the form, controller, and templates as needed.
+ 4) Run "php bin/console make:migration" to generate a migration for the newly added User::isVerified property.
+
+ Then open your browser, go to "/register" and enjoy your new form!
+
+
+ 
+ Next:
+   1) Run "php bin/console make:migration" to generate a migration for the new "App\Entity\ResetPasswordRequest" entity.
+   2) Review forms in "src/Form" to customize validation and labels.
+   3) Review and customize the templates in `templates/reset_password`.
+   4) Make sure your MAILER_DSN env var has the correct settings.
+   5) Create a "forgot your password link" to the app_forgot_password_request route on your login form.
+
+ Then open your browser, go to "/reset-password" and enjoy!
