@@ -29,13 +29,13 @@ class HistoriqueController extends AbstractController
  
  
       /**
-     * @Rest\Get("/historiquedepanneurs", name="app_historiquedepanneur_list")
+     * @Rest\Get("/historiques", name="app_historique_list")
      * @View
      */
     public function listAction(EntityManagerInterface $em)
     {
-        $historiquedepanneurs = $em->getRepository('App\Entity\HistoriqueDepanneur')->findAll();
-        return $historiquedepanneurs;
+        $historiques = $em->getRepository('App\Entity\HistoriqueDepanneur')->findAll();
+        return $historiques;
     }
 
 
@@ -44,51 +44,51 @@ class HistoriqueController extends AbstractController
     
     /**
      * @Rest\Post(
-     *    path = "/historiquedepanneur",
-     *    name = "historiquedepanneur"
+     *    path = "historique",
+     *    name = "historique"
      * )
      * @Rest\View(StatusCode = 201)
-     * @ParamConverter("historiquedepanneur", converter="fos_rest.request_body")
+     * @ParamConverter("historique", converter="fos_rest.request_body")
      */
-    public function createAction(Historique $historiquedepanneur, PersistenceManagerRegistry $doctrine)
+    public function createAction(Historique $historique, PersistenceManagerRegistry $doctrine)
     {  
         $em = $doctrine->getManager();
 
-        $em->persist($historiquedepanneur);
+        $em->persist($historique);
         $em->flush();
         
-        return $historiquedepanneur;
+        return $historique;
     }
   /**
      * @Get(
-     *     path = "/historiquedepanneur/{id}",
-     *     name = "app_historiquedepanneur_show",
+     *     path = "/historique/{id}",
+     *     name = "app_historique_show",
      *     requirements = {"id"="\d+"}
      * )
      * @View
      */
-    public function showAction(Historique $historiquedepanneur)
+    public function showAction(Historique $historique)
     {
     
-        return $historiquedepanneur;
+        return $historique;
     }
  
     /**
-     * @Route("/historiquedepanneur/del/{id}", name="historiquedepanneur_delete", methods={"DELETE"})
+     * @Route("/historique/del/{id}", name="historique_delete", methods={"DELETE"})
      */
     public function delete(int $id): Response
     {
         $entityManager = $this->getDoctrine()->getManager();
-        $historiquedepanneur = $entityManager->getRepository(HistoriqueDepanneur::class)->find($id);
+        $historique = $entityManager->getRepository(HistoriqueDepanneur::class)->find($id);
  
-        if (!$historiquedepanneur) {
-            return $this->json('No historiquedepanneur found for id' . $id, 404);
+        if (!$historique) {
+            return $this->json('No historique found for id' . $id, 404);
         }
  
-        $entityManager->remove($historiquedepanneur);
+        $entityManager->remove($historique);
         $entityManager->flush();
  
-        return $this->json('Deleted a historiquedepanneur successfully with id ' . $id);
+        return $this->json('Deleted a historique successfully with id ' . $id);
     }
  
 

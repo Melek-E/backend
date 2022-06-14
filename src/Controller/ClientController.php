@@ -26,6 +26,7 @@ class ClientController extends AbstractController
     * @Rest\Get("/clients", name="app_clients_list")
     * @View
     */
+
    public function listAction(EntityManagerInterface $em)
    {
        $clients = $em->getRepository('App\Entity\Client')->findAll();

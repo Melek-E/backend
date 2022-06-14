@@ -57,13 +57,7 @@ class Historique
      */
     private $destination;
 
-     /**
-     * @var float
-     *
-     * @ORM\Column(name="cout", type="float", length=255, nullable=true)
-     */
-    private $cout;
-
+  
     /**
      * @ORM\Column(type="float", nullable=true)
      */
@@ -99,17 +93,7 @@ class Historique
         return $this;
     }
 
-    public function getCout(): int
-    {
-        return $this->cout;
-    }
-
-    public function setCout(string $cout): self
-    {
-        $this->nomDepanneur = $cout;
-
-        return $this;
-    }
+    
 
     public function getKilometres(): ?string
     {
