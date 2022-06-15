@@ -57,7 +57,7 @@ class HistoriqueController extends AbstractController
   /**
      * @Get(
      *     path = "/historique/{id}",
-     *     name = "app_historique _show",
+     *     name = "app_historique_show",
      *     requirements = {"id"="\d+"}
      * )
      * @View
