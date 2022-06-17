@@ -37,6 +37,11 @@ class Camion
      */
     private $mondepanneur;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $etat;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Camion
     public function setMondepanneur(?Depanneur $mondepanneur): self
     {
         $this->mondepanneur = $mondepanneur;
+
+        return $this;
+    }
+
+    public function getEtat(): ?string
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(?string $etat): self
+    {
+        $this->etat = $etat;
 
         return $this;
     }
